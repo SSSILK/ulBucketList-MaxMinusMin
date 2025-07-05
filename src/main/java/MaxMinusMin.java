@@ -1,5 +1,6 @@
 
 import java.util.List;
+import java.util.ListIterator;
 
 public class MaxMinusMin {
     /**
@@ -10,6 +11,21 @@ public class MaxMinusMin {
      * @return the max value of nums minus the min value of nums.
      */
     public int difference(List<Integer> nums){
-        return 0;
+        if (nums == null || nums.isEmpty()) {
+            throw new IllegalArgumentException("List must not be null or empty");
+        }
+
+        ListIterator<Integer> iterator = nums.listIterator();
+        int min = iterator.next();
+        int max = min;
+
+        while (iterator.hasNext()) {
+            int current = iterator.next();
+            if (current < min) min = current;
+            if (current > max) max = current;
+        }
+
+        return max - min;
+      
     }
 }
